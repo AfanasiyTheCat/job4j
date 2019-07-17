@@ -1,6 +1,18 @@
 package ru.job4j.loop;
 
+/**
+ * BoardTest.
+ *
+ * @author Nikita Shvetsov (mrdevislife2@mail.ru)
+ * @version $1.0v$
+ * @since 17.07.2019
+ */
 public class PrimeNumber {
+    /**
+     *
+     * @param finish - end of numbers
+     * @return - coint for prime numbers
+     */
     public int calc(int finish) {
         int count = 0;
         boolean flag = true;
