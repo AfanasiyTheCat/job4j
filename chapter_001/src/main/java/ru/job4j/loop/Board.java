@@ -1,7 +1,22 @@
 package ru.job4j.loop;
 
+
+/**
+ * Board.
+ *
+ * @author Nikita Shvetsov (mrdevislife2@mail.ru)
+ * @version $1.0v$
+ * @since 17.07.2019
+ */
+
 public class Board {
-    public String paint(int width, int height) {
+    /**
+     *
+     * @param width - vidth
+     * @param height - heigth
+     * @return chess board
+     */
+    public String paint(int height, int width) {
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
         for (int i = 0; i < width; i++ ) {
