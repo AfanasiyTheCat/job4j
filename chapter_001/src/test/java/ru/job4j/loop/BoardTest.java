@@ -29,7 +29,7 @@ public class BoardTest {
         String rsl = board.paint(4, 3);
         String ln = System.lineSeparator();
         assertThat(rsl, is(
-                String.format("X X %s X X%sX X %s", ln, ln, ln)
+                String.format("X X%s X %sX X%s X %s", ln, ln, ln, ln)
                 )
         );
     }
