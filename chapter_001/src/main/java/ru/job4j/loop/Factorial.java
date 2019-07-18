@@ -11,12 +11,12 @@ package ru.job4j.loop;
 public class Factorial {
     /**
      *
-     * @param n - number for factorial
-     * @return factorial of n number
+     * @param n - number for factorial.
+     * @return factorial of n number.
      */
     public int calc(int n) {
         int result = 1;
-        for (int i = n; i >= 1; i--){
+        for (int i = n; i >= 1; i--) {
             result = result * i;
         }
         return result;

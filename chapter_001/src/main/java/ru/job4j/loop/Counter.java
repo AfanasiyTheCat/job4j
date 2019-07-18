@@ -11,15 +11,15 @@ package ru.job4j.loop;
 
 public class Counter {
     /**
-     * Method add
-     * @param start - first number
-     * @param finish - last number
-     * @return count of чётные numbers
+     * Method add.
+     * @param start - first number.
+     * @param finish - last number.
+     * @return count of чётные numbers.
      */
     public int add(int start, int finish) {
         int sum = 0;
-        for (int i = start; i <= finish; i++){
-            if (i % 2 == 0){
+        for (int i = start; i <= finish; i++) {
+            if (i % 2 == 0) {
                 sum = sum + i;
             }
         }

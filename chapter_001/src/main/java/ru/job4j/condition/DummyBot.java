@@ -1,8 +1,18 @@
 package ru.job4j.condition;
 
+/**
+ * DummyBot.
+ * @author Nikita Shvetsov
+ * @version $1.0$
+ * @since 16.07.2019
+ */
 
 public class DummyBot {
-
+    /**
+     *
+     * @param question - вопрос для бота.
+     * @return ответа бота.
+     */
 
     public String answer(String question) {
         String rsl = "Это ставит меня в тупик. Задайте другой вопрос.";

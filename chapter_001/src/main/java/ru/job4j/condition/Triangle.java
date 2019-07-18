@@ -1,5 +1,10 @@
 package ru.job4j.condition;
-
+/**
+ * DummyBot.
+ * @author Nikita Shvetsov
+ * @version $1.0$
+ * @since 16.07.2019
+ */
 public class Triangle {
 
     /**
@@ -7,11 +12,11 @@ public class Triangle {
      *
      * Формула.
      *
-     * (a + b + c) / 2
+     * (a + b + c) / 2.
      *
-     * @param a расстояние между точками a b
-     * @param b расстояние между точками a c
-     * @param c расстояние между точками b c
+     * @param a расстояние между точками a b.
+     * @param b расстояние между точками a c.
+     * @param c расстояние между точками b c.
      * @return полуперимента.
      */
     public double period(double a, double b, double c) {
@@ -30,7 +35,7 @@ public class Triangle {
      */
     private boolean exist(double a, double c, double b) {
         boolean result = false;
-        if (a < (b + c) && b < (a + c) && c < (a + b)){
+        if (a < (b + c) && b < (a + c) && c < (a + b)) {
             result = true;
         }
         return result;

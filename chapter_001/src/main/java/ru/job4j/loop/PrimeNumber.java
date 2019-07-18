@@ -1,7 +1,7 @@
 package ru.job4j.loop;
 
 /**
- * BoardTest.
+ * PrimeNumber.
  *
  * @author Nikita Shvetsov (mrdevislife2@mail.ru)
  * @version $1.0v$
@@ -10,19 +10,19 @@ package ru.job4j.loop;
 public class PrimeNumber {
     /**
      *
-     * @param finish - end of numbers
-     * @return - coint for prime numbers
+     * @param finish - end of numbers.
+     * @return - coint for prime numbers.
      */
     public int calc(int finish) {
         int count = 0;
         boolean flag = true;
-        for (int i = 2; i <= finish; i++){
-            for (int j = i-1; j > 1; j--){
-                if (i % j == 0){
+        for (int i = 2; i <= finish; i++) {
+            for (int j = i - 1; j > 1; j--) {
+                if (i % j == 0) {
                     flag = false;
                 }
             }
-            if (flag){
+            if (flag) {
                 count++;
             }
             flag = true;

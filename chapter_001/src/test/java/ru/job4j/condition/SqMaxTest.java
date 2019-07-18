@@ -6,8 +6,8 @@ import static org.junit.Assert.assertThat;
 
 public class SqMaxTest {
     @Test
-    public void SqMaxTest(){
+    public void sqMaxTest() {
         SqMax check = new SqMax();
-        assertThat(check.max(4,2,1,3),is(4));
+        assertThat(check.max(4, 2, 1, 3), is(4));
     }
 }

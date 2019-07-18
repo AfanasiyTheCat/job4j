@@ -3,7 +3,7 @@ package ru.job4j.array;
 import java.util.Arrays;
 
 /**
- * @author Nikita Shvetsov
+ * @author Nikita Shvetsov.
  * @version 1.0v
  * @since 18.07.2019
  */
@@ -11,16 +11,16 @@ import java.util.Arrays;
 public class ArrayDuplicate {
     /**
      *
-     * @param data - массив для проверки на дубликат
-     * @return - массив без дубликатов
+     * @param data - массив для проверки на дубликат.
+     * @return - массив без дубликатов.
      */
-    public String[] cut(String[] data){
+    public String[] cut(String[] data) {
         int count = 0;
         int duplicates = 0;
-        for (int i = 1; i < data.length; i++){
+        for (int i = 1; i < data.length; i++) {
             boolean flag = true;
-            for (int j = 0; j != 1+count; j++){
-                if (data[j].equals(data[1+count])){
+            for (int j = 0; j != 1 + count; j++) {
+                if (data[j].equals(data[1 + count])) {
                     flag = false;
                     if (i != data.length - 1) {
                         String x = data[1 + count];
@@ -31,10 +31,10 @@ public class ArrayDuplicate {
                     }
                 }
             }
-            if (flag){
+            if (flag) {
                 count++;
             }
         }
-        return Arrays.copyOf(data,count+1);
+        return Arrays.copyOf(data, count + 1);
     }
 }

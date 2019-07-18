@@ -12,6 +12,6 @@ public class ArrayDuplicateTest {
         ArrayDuplicate test = new ArrayDuplicate();
         String[] input = new String[]{"Привет", "Мир", "Привет", "Супер", "Мир"};
         String[] expected = new String[]{"Привет", "Мир", "Супер"};
-        assertThat(test.cut(input),is(expected));
+        assertThat(test.cut(input), is(expected));
     }
 }

@@ -1,24 +1,56 @@
 package ru.job4j.converter;
-
+/**
+ * Converter.
+ * @author Nikita Shvetsov
+ * @version $1.0$
+ */
 public class Converter {
+    /**
+     *
+     * @param value - рубли.
+     * @return евро.
+     */
 
     public static int rubleToEuro(int value) {
         return value / 70;
     }
+    /**
+     *
+     * @param value - рубли.
+     * @return доллары.
+     */
+
 
     public static int rubleToDollar(int value) {
         return value / 60;
     }
+    /**
+     *
+     * @param value - евро.
+     * @return рубли.
+     */
 
-    public static int euroToRuble(int value){
+
+    public static int euroToRuble(int value) {
         return value * 70;
     }
+    /**
+     *
+     * @param value - доллары.
+     * @return рубли.
+     */
 
-    public static int dollarToRuble(int value){
+
+    public static int dollarToRuble(int value) {
         return value * 60;
     }
 
-    public static void main(String[] args){
+    /**
+     * Main.
+     * @param args - args
+     */
+
+    public static void main(String[] args) {
         int in = 140;
         int expected = 2;
         boolean passed;
@@ -41,6 +73,6 @@ public class Converter {
         ruble = dollarToRuble(dollar);
         out = ruble;
         passed = out == expected;
-        System.out.println(dollar + " dollar are "+ ruble + " ruble Test result: " + passed);
+        System.out.println(dollar + " dollar are " + ruble + " ruble Test result: " + passed);
     }
 }
