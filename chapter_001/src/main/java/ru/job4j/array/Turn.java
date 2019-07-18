@@ -12,7 +12,7 @@ public class Turn {
      * @return - перевёрнутый массив.
      */
     public int[] back(int[] array) {
-        int center = array.length % 2 == 0 ? array.length / 2 : (array.length - 1) / 2;
+        int center = array.length / 2;
         for (int i = 0; i < center; i++) {
             int x = array[i];
             array[i] = array[array.length - i - 1];
