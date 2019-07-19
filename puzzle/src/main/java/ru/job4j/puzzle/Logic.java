@@ -84,7 +84,7 @@ public class Logic {
                     count2 = 0;
                 }
             }
-            if(count == 5 || count2 == 5) {
+            if(count == table.length || count2 == table.length) {
                 result = true;
             }
         }
