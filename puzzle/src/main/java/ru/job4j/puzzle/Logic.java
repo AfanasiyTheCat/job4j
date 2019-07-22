@@ -78,13 +78,13 @@ public class Logic {
                 } else {
                     count = 0;
                 }
-                if(table[j][i] == 1) {
+                if (table[j][i] == 1) {
                     count2++;
                 } else {
                     count2 = 0;
                 }
             }
-            if(count == table.length || count2 == table.length) {
+            if (count == table.length || count2 == table.length) {
                 result = true;
             }
         }
