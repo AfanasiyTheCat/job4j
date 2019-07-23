@@ -16,4 +16,15 @@ public class Max {
         int result = left > right ? left : right;
         return result;
     }
+    public int max(int left, int middle, int right) {
+        int result = -1;
+        if(left > middle && left > right) {
+            result = left;
+        } else if (middle > left && middle > right) {
+            result = middle;
+        } else if (right > left && right > middle) {
+            result = right;
+        }
+        return result;
+    }
 }
