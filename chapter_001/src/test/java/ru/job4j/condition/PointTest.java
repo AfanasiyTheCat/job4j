@@ -24,6 +24,14 @@ public class PointTest {
     }
 
     @Test
+    public void when3dDistance() {
+        Point a = new Point(0, 0, 0);
+        Point b = new Point(1, 4, 5);
+        double result = a.distance3d(b);
+        assertThat(result, is(6.48074069840786d));
+    }
+
+    @Test
     public void whenShowInfo() {
         Point first = new Point(1, 1);
         first.info();
