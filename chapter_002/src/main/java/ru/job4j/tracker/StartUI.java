@@ -8,8 +8,13 @@ public class StartUI {
     private static final String FIND_ID = "4";
     private static final String FIND_NAME = "5";
     private static final String EXIT = "6";
-    private ConsoleInput input = new ConsoleInput();
-    private Tracker tracker = new Tracker();
+    private Tracker tracker;
+    private Input input;
+
+    public StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
+    }
 
     private String start() {
         return input.ask("0. Добавить заявку\n"
@@ -110,7 +115,7 @@ public class StartUI {
         return result;
     }
 
-    private void init() {
+    public void init() {
         boolean isExit = false;
         while (!isExit) {
             switch (start()) {
@@ -143,7 +148,7 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        StartUI ui = new StartUI();
+        StartUI ui = new StartUI(new ConsoleInput(), new Tracker());
         ui.init();
     }
 }
