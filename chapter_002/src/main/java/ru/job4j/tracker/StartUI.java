@@ -11,15 +11,15 @@ public class StartUI {
     private ConsoleInput input = new ConsoleInput();
     private Tracker tracker = new Tracker();
 
-    private String start(){
-        return input.ask("0. Добавить заявку\n" +
-                "1. Показать все заявки\n" +
-                "2. Редактировать заявку\n" +
-                "3. Удалить заявку\n" +
-                "4. Поиск заявки по ID\n" +
-                "5. Поиск заявки по имени\n" +
-                "6. Выход\n" +
-                "Select: ");
+    private String start() {
+        return input.ask("0. Добавить заявку\n"
+                + "1. Показать все заявки\n"
+                + "2. Редактировать заявку\n"
+                + "3. Удалить заявку\n"
+                + "4. Поиск заявки по ID\n"
+                + "5. Поиск заявки по имени\n"
+                + "6. Выход\n"
+                + "Select: ");
     }
 
     private boolean add() {
@@ -41,10 +41,10 @@ public class StartUI {
         Item[] items = tracker.findAll();
         if (items[0] != null) {
             for (Item item : items) {
-                System.out.print("Имя: " + item.getName() + ", " +
-                        "Описание: " + item.getDecs() + ", " +
-                        "Время: " + item.getTime() + ", " +
-                        "ID: " + item.getId() + "\n");
+                System.out.print("Имя: " + item.getName() + ", "
+                        + "Описание: " + item.getDecs() + ", "
+                        + "Время: " + item.getTime() + ", "
+                        + "ID: " + item.getId() + "\n");
             }
         } else {
             System.out.println("Трэкер пуст.");
@@ -59,7 +59,7 @@ public class StartUI {
                 input.ask("Введите описание новой заявки: "),
                 System.currentTimeMillis()
         );
-        if(tracker.replace(choose, item)) {
+        if (tracker.replace(choose, item)) {
             result = true;
         } else {
             System.out.println("Элемент не найден.");
@@ -83,10 +83,10 @@ public class StartUI {
         String id = input.ask("Введите ID элемента для поиска: ");
         Item item = tracker.findById(id);
         if (item != null) {
-            System.out.print("Имя: " + item.getName() + ", " +
-                    "Описание: " + item.getDecs() + ", " +
-                    "Время: " + item.getTime() + ", " +
-                    "ID: " + item.getId() + "\n");
+            System.out.print("Имя: " + item.getName() + ", "
+                    + "Описание: " + item.getDecs() + ", "
+                    + "Время: " + item.getTime() + ", "
+                    + "ID: " + item.getId() + "\n");
         } else {
             System.out.println("Элементов с таким ID не найдено.");
         }
@@ -99,10 +99,10 @@ public class StartUI {
         Item[] items = tracker.findByName(name);
         if (items[0] != null) {
             for (Item item : items) {
-                System.out.print("Имя: " + item.getName() + ", " +
-                        "Описание: " + item.getDecs() + ", " +
-                        "Время: " + item.getTime() + ", " +
-                        "ID: " + item.getId() + "\n");
+                System.out.print("Имя: " + item.getName() + ", "
+                        + "Описание: " + item.getDecs() + ", "
+                        + "Время: " + item.getTime() + ", "
+                        + "ID: " + item.getId() + "\n");
             }
         } else {
             System.out.println("Элементов с таким именем не найдено");
@@ -134,6 +134,9 @@ public class StartUI {
                     continue;
                 case (EXIT):
                     isExit = true;
+                    continue;
+                default:
+                    System.out.println("Выберите элемент, написав его цифру.");
                     continue;
             }
         }
