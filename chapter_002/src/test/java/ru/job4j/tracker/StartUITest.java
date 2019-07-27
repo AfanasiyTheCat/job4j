@@ -29,7 +29,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
+        Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
@@ -39,7 +39,7 @@ public class StartUITest {
         Item item = new Item("test name", "decs", System.currentTimeMillis());
         tracker.add(item);
         Input input = new StubInput(new String[] {
-                "2", item.getId(), "replaced", "desc", "6"
+                "2", item.getId(), "replaced", "desc", "y"
         });
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("replaced"));
@@ -52,7 +52,7 @@ public class StartUITest {
         tracker.add(item);
         tracker.add(item2);
         Input input = new StubInput(new String[] {
-                "3", item.getId(), "6"
+                "3", item.getId(), "y"
         });
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("second"));
@@ -64,16 +64,16 @@ public class StartUITest {
         Item item = new Item("test", "desc", System.currentTimeMillis());
         tracker.add(item);
         Input input = new StubInput(new String[] {
-                "1", "6"
+                "1", "y"
         }
         );
         new StartUI(input, tracker).init();
         Assert.assertThat(
-                this.out.toString(),
+                this.out.toString().split("\n")[7],
                 Is.is("Имя: " + item.getName() +
                         ", Описание: " + item.getDecs() +
                         ", Время: " + item.getTime() +
-                        ", ID: " + item.getId() + "\n")
+                        ", ID: " + item.getId())
         );
         this.backOutput();
     }
@@ -84,16 +84,16 @@ public class StartUITest {
         Item item = new Item("test", "desc", System.currentTimeMillis());
         tracker.add(item);
         Input input = new StubInput(new String[] {
-                "5", item.getName(), "6"
+                "5", item.getName(), "y"
         }
         );
         new StartUI(input, tracker).init();
         Assert.assertThat(
-                this.out.toString(),
+                this.out.toString().split("\n")[7],
                 Is.is("Имя: " + item.getName() +
                         ", Описание: " + item.getDecs() +
                         ", Время: " + item.getTime() +
-                        ", ID: " + item.getId() + "\n")
+                        ", ID: " + item.getId())
         );
         this.backOutput();
     }
@@ -104,16 +104,16 @@ public class StartUITest {
         Item item = new Item("test", "desc", System.currentTimeMillis());
         tracker.add(item);
         Input input = new StubInput(new String[] {
-                "4", item.getId(), "6"
+                "4", item.getId(), "y"
         }
         );
         new StartUI(input, tracker).init();
         Assert.assertThat(
-                this.out.toString(),
+                this.out.toString().split("\n")[7],
                 Is.is("Имя: " + item.getName() +
                         ", Описание: " + item.getDecs() +
                         ", Время: " + item.getTime() +
-                        ", ID: " + item.getId() + "\n")
+                        ", ID: " + item.getId())
         );
         this.backOutput();
     }

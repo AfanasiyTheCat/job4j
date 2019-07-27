@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
     private static final String ADD = "0";
     private static final String ALL = "1";
@@ -118,14 +121,18 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
+        int [] range = new int[menu.getActionsLentgh()];
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range[i] = i;
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", range));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     public static void main(String[] args) {
-        StartUI ui = new StartUI(new ConsoleInput(), new Tracker());
+        StartUI ui = new StartUI(new ValidateInput(), new Tracker());
         ui.init();
     }
 }
