@@ -116,35 +116,12 @@ public class StartUI {
     }
 
     public void init() {
-        boolean isExit = false;
-        while (!isExit) {
-            switch (start()) {
-                case (ADD):
-                    add();
-                    continue;
-                case (ALL):
-                    all();
-                    continue;
-                case (EDIT):
-                    edit();
-                    continue;
-                case (DELETE):
-                    delete();
-                    continue;
-                case (FIND_ID):
-                    findId();
-                    continue;
-                case (FIND_NAME):
-                    findName();
-                    continue;
-                case (EXIT):
-                    isExit = true;
-                    continue;
-                default:
-                    System.out.println("Выберите элемент, написав его цифру.");
-                    continue;
-            }
-        }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.valueOf(input.ask("select:")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     public static void main(String[] args) {
