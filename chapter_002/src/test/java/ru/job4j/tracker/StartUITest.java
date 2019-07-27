@@ -1,11 +1,31 @@
 package ru.job4j.tracker;
 
+import org.hamcrest.core.Is;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class StartUITest {
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+    }
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
@@ -36,5 +56,65 @@ public class StartUITest {
         });
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("second"));
+    }
+    @Test
+    public void whenUserFindAll() {
+        this.loadOutput();
+        Tracker tracker = new Tracker();
+        Item item = new Item("test", "desc", System.currentTimeMillis());
+        tracker.add(item);
+        Input input = new StubInput(new String[] {
+                "1", "6"
+        }
+        );
+        new StartUI(input, tracker).init();
+        Assert.assertThat(
+                this.out.toString(),
+                Is.is("Имя: " + item.getName() +
+                        ", Описание: " + item.getDecs() +
+                        ", Время: " + item.getTime() +
+                        ", ID: " + item.getId() + "\n")
+        );
+        this.backOutput();
+    }
+    @Test
+    public void whenUserFindByName() {
+        this.loadOutput();
+        Tracker tracker = new Tracker();
+        Item item = new Item("test", "desc", System.currentTimeMillis());
+        tracker.add(item);
+        Input input = new StubInput(new String[] {
+                "5", item.getName(), "6"
+        }
+        );
+        new StartUI(input, tracker).init();
+        Assert.assertThat(
+                this.out.toString(),
+                Is.is("Имя: " + item.getName() +
+                        ", Описание: " + item.getDecs() +
+                        ", Время: " + item.getTime() +
+                        ", ID: " + item.getId() + "\n")
+        );
+        this.backOutput();
+    }
+    @Test
+    public void whenUserFindById() {
+        this.loadOutput();
+        Tracker tracker = new Tracker();
+        Item item = new Item("test", "desc", System.currentTimeMillis());
+        tracker.add(item);
+        Input input = new StubInput(new String[] {
+                "4", item.getId(), "6"
+        }
+        );
+        new StartUI(input, tracker).init();
+        Assert.assertThat(
+                this.out.toString(),
+                Is.is("Имя: " + item.getName() +
+                        ", Описание: " + item.getDecs() +
+                        ", Время: " + item.getTime() +
+                        ", ID: " + item.getId() + "\n")
+        );
+        this.backOutput();
     }
 }
