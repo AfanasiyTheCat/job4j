@@ -132,7 +132,7 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        StartUI ui = new StartUI(new ValidateInput(), new Tracker());
+        StartUI ui = new StartUI(new ValidateInput(new ConsoleInput()), new Tracker());
         ui.init();
     }
 }
