@@ -1,16 +1,9 @@
 package ru.job4j.tracker;
 
-public class AddItem implements UserAction {
-    private int key;
-    private String info;
+public class AddItem extends BaseAction {
 
-    public AddItem(int key, String info) {
-        this.key = key;
-        this.info = info;
-    }
-
-    public int key() {
-        return key;
+    public AddItem(int key, String name) {
+        super(key, name);
     }
 
     public void execute(Input input, Tracker tracker) {
@@ -22,9 +15,5 @@ public class AddItem implements UserAction {
         if (tracker.add(item) == null) {
             System.out.println("Ошибка: Трэкер переполнен.");
         }
-    }
-
-    public String info() {
-        return String.format("%s. %s", key, info);
     }
 }

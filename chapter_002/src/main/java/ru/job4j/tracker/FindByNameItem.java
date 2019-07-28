@@ -1,16 +1,9 @@
 package ru.job4j.tracker;
 
-public class FindByNameItem implements UserAction  {
-    private int key;
-    private String info;
+public class FindByNameItem extends BaseAction  {
 
     public FindByNameItem(int key, String info) {
-        this.key = key;
-        this.info = info;
-    }
-
-    public int key() {
-        return key;
+        super(key, info);
     }
 
     public void execute(Input input, Tracker tracker) {
@@ -26,9 +19,5 @@ public class FindByNameItem implements UserAction  {
         } else {
             System.out.println("Элементов с таким именем не найдено");
         }
-    }
-
-    public String info() {
-        return String.format("%s. %s", key, info);
     }
 }
