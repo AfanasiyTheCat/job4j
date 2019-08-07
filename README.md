@@ -1,6 +1,2 @@
-# Швецов Никита для  http://job4j.ru/
-
-
-task_139840
-В курсе производилась работа с ветками git.
-Объединение зафиксированных изменений. Ошибку исправил.
+[![Build Status](https://travis-ci.org/AfanasiyTheCat/job4j.svg?branch=master)](https://travis-ci.org/AfanasiyTheCat/job4j)
+[![codecov](https://codecov.io/gh/AfanasiyTheCat/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/AfanasiyTheCat/job4j)
