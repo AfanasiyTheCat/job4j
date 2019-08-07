@@ -1,31 +1,31 @@
 package ru.job4j.usermap;
 
-import java.util.Random;
-
-public class User {
-    private int id;
+public class User implements Comparable<User> {
+    private int age;
     private String name;
-    private String city;
-    Random rand = new Random();
 
-    public User(String name, String city) {
-        this.city = city;
+    public User(String name, int age) {
         this.name = name;
-        this.id = rand.nextInt();
-    }
-    public User(String name, String city, int id) {
-        this.city = city;
-        this.name = name;
-        this.id = id;
+        this.age = age;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getAge() {
+        return age;
     }
     public String getName() {
         return name;
     }
-    public String getCity() {
-        return city;
+
+    @Override
+    public int compareTo(User o) {
+        int result;
+        if (this.age < o.age) {
+            result = 1;
+        } else if (this.age > o.age) {
+            result = -1;
+        } else {
+            result = 0;
+        }
+        return result;
     }
 }
