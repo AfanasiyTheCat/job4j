@@ -1,9 +1,11 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class FindByIdItem extends BaseAction  {
 
-    public FindByIdItem(int key, String info) {
-        super(key, info);
+    public FindByIdItem(int key, String info, Consumer<String> output) {
+        super(key, info, output);
     }
 
     public void execute(Input input, Tracker tracker) {
@@ -15,7 +17,7 @@ public class FindByIdItem extends BaseAction  {
                     + "Время: " + item.getTime() + ", "
                     + "ID: " + item.getId() + "\n");
         } else {
-            System.out.println("Элементов с таким ID не найдено.");
+            output().accept("Элементов с таким ID не найдено.");
         }
     }
 }

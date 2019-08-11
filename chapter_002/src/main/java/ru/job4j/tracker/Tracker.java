@@ -49,7 +49,7 @@ public class Tracker {
         int index = 0;
         for (int i = 0; i < count; i++) {
             if (items.get(i).getName().equals(key)) {
-                result.set(index, items.get(i));
+                result.add(index, items.get(i));
                 index++;
             }
         }

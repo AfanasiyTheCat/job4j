@@ -8,14 +8,23 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class StartUITest {
     private final PrintStream stdout = System.out;
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+        private final PrintStream stdout = new PrintStream(out);
+
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
     @Before
     public void loadOutput() {
         System.setOut(new PrintStream(this.out));
@@ -30,8 +39,8 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
+        assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
     @Test
     public void whenUserReplaceItemThenTrackerHasNewItem() {
@@ -41,8 +50,8 @@ public class StartUITest {
         Input input = new StubInput(new String[] {
                 "2", item.getId(), "replaced", "desc", "y"
         });
-        new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("replaced"));
+        new StartUI(input, tracker, output).init();
+        assertThat(tracker.findAll().get(0).getName(), is("replaced"));
     }
     @Test
     public void whenUserRemoveItemThenTrackerHasNotItem() {
@@ -54,8 +63,8 @@ public class StartUITest {
         Input input = new StubInput(new String[] {
                 "3", item.getId(), "y"
         });
-        new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("second"));
+        new StartUI(input, tracker, output).init();
+        assertThat(tracker.findAll().get(0).getName(), is("second"));
     }
     @Test
     public void whenUserFindAll() {
@@ -67,7 +76,7 @@ public class StartUITest {
                 "1", "y"
         }
         );
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         Assert.assertThat(
                 this.out.toString().split("\n")[7],
                 Is.is("Имя: " + item.getName() +
@@ -87,7 +96,7 @@ public class StartUITest {
                 "5", item.getName(), "y"
         }
         );
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         Assert.assertThat(
                 this.out.toString().split("\n")[7],
                 Is.is("Имя: " + item.getName() +
@@ -107,7 +116,7 @@ public class StartUITest {
                 "4", item.getId(), "y"
         }
         );
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         Assert.assertThat(
                 this.out.toString().split("\n")[7],
                 Is.is("Имя: " + item.getName() +

@@ -1,9 +1,11 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class AddItem extends BaseAction {
 
-    public AddItem(int key, String name) {
-        super(key, name);
+    public AddItem(int key, String name, Consumer<String> output) {
+        super(key, name, output);
     }
 
     public void execute(Input input, Tracker tracker) {
@@ -13,7 +15,7 @@ public class AddItem extends BaseAction {
                 System.currentTimeMillis()
         );
         if (tracker.add(item) == null) {
-            System.out.println("Ошибка: Трэкер переполнен.");
+            output().accept("Ошибка: Трэкер переполнен.");
         }
     }
 }

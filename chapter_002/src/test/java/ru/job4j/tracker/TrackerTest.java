@@ -47,7 +47,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("Test", "test...", System.currentTimeMillis());
         tracker.add(item);
-        assertThat(tracker.findAll()[0].getName(), is("Test"));
+        assertThat(tracker.findAll().get(0).getName(), is("Test"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TrackerTest {
         Item item2 = new Item("Test2", "test...", System.currentTimeMillis());
         tracker.add(item1);
         tracker.add(item2);
-        assertThat(tracker.findByName(item2.getName())[0].getId(), is(item2.getId()));
+        assertThat(tracker.findByName(item2.getName()).get(0).getId(), is(item2.getId()));
     }
 
     @Test

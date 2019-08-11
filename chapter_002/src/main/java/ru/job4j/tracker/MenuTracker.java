@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MenuTracker {
     /**
@@ -17,6 +18,7 @@ public class MenuTracker {
      * @param хранит ссылку на массив типа UserAction.
      */
     private List<UserAction> actions = new ArrayList<>();
+    private final Consumer<String> output;
 
     /**
      * Конструктор.
@@ -24,9 +26,10 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
@@ -42,13 +45,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Add program"));
-        this.actions.add(new FindAllItem(1, "Show all items"));
-        this.actions.add(new UpdateItem(2, "Edit item"));
-        this.actions.add(new DeleteItem(3, "Delete item"));
-        this.actions.add(new FindByIdItem(4, "Find item by Id"));
-        this.actions.add(new FindByNameItem(5, "Find items by name"));
-        this.actions.add(new ExitProgram(6, "Exit Program"));
+        this.actions.add(new AddItem(0, "Add program", System.out :: println));
+        this.actions.add(new FindAllItem(1, "Show all items", System.out :: println));
+        this.actions.add(new UpdateItem(2, "Edit item", System.out :: println));
+        this.actions.add(new DeleteItem(3, "Delete item", System.out :: println));
+        this.actions.add(new FindByIdItem(4, "Find item by Id", System.out :: println));
+        this.actions.add(new FindByNameItem(5, "Find items by name", System.out :: println));
+        this.actions.add(new ExitProgram(6, "Exit Program", System.out :: println));
     }
 
     /**
@@ -66,7 +69,7 @@ public class MenuTracker {
     public void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }

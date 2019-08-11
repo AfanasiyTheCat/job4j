@@ -1,9 +1,11 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class UpdateItem extends BaseAction {
 
-    public UpdateItem(int key, String info) {
-        super(key, info);
+    public UpdateItem(int key, String info, Consumer<String> output) {
+        super(key, info, output);
     }
 
     public void execute(Input input, Tracker tracker) {
@@ -14,7 +16,7 @@ public class UpdateItem extends BaseAction {
                 System.currentTimeMillis()
         );
         if (!tracker.replace(choose, item)) {
-            System.out.println("Элемент не найден.");
+            output().accept("Элемент не найден.");
         }
     }
 }
