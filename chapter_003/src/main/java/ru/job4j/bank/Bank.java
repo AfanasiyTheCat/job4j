@@ -1,6 +1,7 @@
 package ru.job4j.bank;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Bank {
     private Map<User, List<Account>> list = new HashMap<>();
@@ -52,25 +53,19 @@ public class Bank {
 
     private User getUserByPassport(String passport) {
         User result = null;
-        User[] users = new User[list.size()];
-        users = list.keySet().toArray(users);
-        for (User user : users) {
-            if (user.getPassport().equals(passport)) {
-                result = user;
-                break;
-            }
-        }
+        Set<User> users = new HashSet<>();
+        users = list.keySet();
+        List<User> ls = users.stream().filter(user -> user.getPassport().equals(passport)).collect(Collectors.toList());
+        result = ls.size() != 0 ? ls.get(0) : null;
         return result;
     }
 
     private Account getAccountByRequisite(User user, String requisite) {
         Account result = null;
         List<Account> accounts = list.get(user);
-        for (int i = 0; i < list.size(); i++) {
-            if (accounts.get(i).getRequisites().equals(requisite)) {
-                result = accounts.get(i);
-                break;
-            }
+        accounts = accounts.stream().filter(account -> account.getRequisites().equals(requisite)).collect(Collectors.toList());
+        if (accounts.size() != 0) {
+            result = accounts.get(0);
         }
         return result;
     }
