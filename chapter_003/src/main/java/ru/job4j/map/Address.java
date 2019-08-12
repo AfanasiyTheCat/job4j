@@ -16,4 +16,19 @@ public class Address {
     public String toString() {
         return city + "/" + street + "/" + String.valueOf(home) + "/" + String.valueOf(apartament);
     }
+
+    public boolean equals(Object o) {
+        boolean result = false;
+        if (o != null) {
+            if (o.getClass() == this.getClass()) {
+                Address address = (Address) o;
+                result = this.toString().equals(address.toString());
+            }
+        }
+        return result;
+    }
+
+    public int hashCode() {
+        return (city + street + home + apartament).hashCode();
+    }
 }

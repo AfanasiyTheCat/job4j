@@ -12,18 +12,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ProfilesTest {
     @Test
     public void when3profiles() {
-        Profile first = new Profile(new Address(
-                "Тюмень", "Мельникайте", 43, 202
-        ));
-        Profile second = new Profile(new Address(
-                "Тюмень", "Профсоюзная", 22, 1
-        ));
+        Address tumen = new Address("Тюмень", "Мельникайте", 43, 202);
+        Profile first = new Profile(tumen);
+        Profile second = first;
         Profile third = new Profile(new Address(
-                "Москва", "Пушкина", 5, 67
+                "Астана", "Пушкина", 5, 67
         ));
         List<Profile> profiles = Arrays.asList(first, second, third);
-        List<Address> expected = Arrays.asList(first.getAddress(),
-                second.getAddress(), third.getAddress());
+        List<Address> expected = Arrays.asList(third.getAddress(),
+                first.getAddress());
         Profiles test = new Profiles();
         assertThat(test.collect(profiles), is(expected));
     }
